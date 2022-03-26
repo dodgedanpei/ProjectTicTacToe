@@ -23,11 +23,19 @@ var displayController = {
   player2:false
 }
 
+var xPlayerName = '';
+var oPlayerName = '';
+
 //Selectors
 const container  = document.getElementById("main-container");
 const resetBtn = document.querySelector(".reset");
-const allGrids = document.querySelectorAll(".grid")
-const gameStatus = document.getElementById("gameStatus")
+const allGrids = document.querySelectorAll(".grid");
+const gameStatus = document.getElementById("gameStatus");
+const gameInfoForm = document.querySelector('.gameInfo')
+const gameInfoSubmit = document.querySelector('.gameInfoSubmit');
+const xName = document.getElementById('xName');
+const oName = document.getElementById('oName');
+
 
 //Event Listeners
 container.addEventListener('click',function(e){
@@ -63,6 +71,13 @@ resetBtn.addEventListener('click',function(e){
   displayController.player1 = true;
 })
 
+gameInfoSubmit.addEventListener('click', function(e){
+  e.preventDefault();
+  xPlayerName = xName.value;
+  oPlayerName = oName.value;
+  gameInfoForm.classList.add('none')
+})
+
 //Functions
 function changePlayer() {
   if(displayController.player1==true){
@@ -78,6 +93,7 @@ function resetGame(){
 counter = 0;
 gameOver = false;
 gameStatus.innerHTML = "In Play!"
+gameInfoForm.classList.remove('none')
 }
 
 function check(player){
@@ -87,9 +103,9 @@ function check(player){
             {
                 gameOver = true;
                 if(displayController.player1 == true){
-                    gameStatus.innerHTML = "X Wins!"
+                    gameStatus.innerHTML = `${xPlayerName} Wins!`
                 } else {
-                    gameStatus.innerHTML = "O Wins!"
+                    gameStatus.innerHTML = `${oPlayerName} Wins!`
                 }
             }
         }
