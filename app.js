@@ -36,7 +36,6 @@ const gameInfoSubmit = document.querySelector('.gameInfoSubmit');
 const xName = document.getElementById('xName');
 const oName = document.getElementById('oName');
 
-
 //Event Listeners
 container.addEventListener('click',function(e){
   const target = e.target;
@@ -45,8 +44,9 @@ container.addEventListener('click',function(e){
       if(target.innerHTML == ''){
         target.innerHTML ="X";
         target.classList.add('X')
-        check(players.player1);
         changePlayer();
+        updateStatus();
+        check(players.player1);
         counter++;
         checkDraw();
       }
@@ -54,8 +54,9 @@ container.addEventListener('click',function(e){
       if(target.innerHTML ==''){
         target.innerHTML ="O";
         target.classList.add('O')
-        check(players.player2);
         changePlayer();
+        updateStatus();
+        check(players.player2);
         counter++;
         checkDraw();
       }
@@ -102,7 +103,7 @@ function check(player){
             if(allGrids[winningConditions[i][0]].innerHTML != '' && allGrids[winningConditions[i][1]].innerHTML != '' &&  allGrids[winningConditions[i][2]].innerHTML != '')
             {
                 gameOver = true;
-                if(displayController.player1 == true){
+                if(displayController.player1 != true){
                     gameStatus.innerHTML = `${xPlayerName} Wins!`
                 } else {
                     gameStatus.innerHTML = `${oPlayerName} Wins!`
@@ -118,4 +119,11 @@ function checkDraw(){
         gameStatus.innerHTML = "Draw!"
         gameOver = true;
     }
+}
+
+function updateStatus(){
+  if(displayController.player1==true){
+    gameStatus.innerHTML = `${xPlayerName}'s turn`
+  } else{
+    gameStatus.innerHTML = `${oPlayerName}'s turn`  }
 }

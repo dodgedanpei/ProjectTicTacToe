@@ -44,13 +44,16 @@ html {
   grid-template-columns: 1fr 1fr;
 }
 
+.photo {
+  height: 15em;
+  margin-bottom: 1em;
+}
+
 .gameInfo{
   position: fixed;
-  top: 10%;
+  top: 0;
   left: 30%;
-  transform: translate((-50%, -50%));
-  border-radius: 10px;
-  padding: 10em;
+  padding-left: 10em;
   z-index: 10;
   background-color: #fff;
 }
